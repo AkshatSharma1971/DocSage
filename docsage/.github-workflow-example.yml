@@ -1,0 +1,16 @@
+# Copy to .github/workflows/docsage.yml in the repo you want to protect.
+# Rules-only (no Ollama on CI runners); exits 1 on confirmed drift.
+name: DocSage
+on: [pull_request]
+jobs:
+  docsage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: |
+          git clone --depth 1 https://github.com/YOUR_USER/docsage /tmp/docsage
+          cd /tmp/docsage && python -m docsage.cli --repo "$GITHUB_WORKSPACE" \
+            --base "origin/${{ github.base_ref }}" --head HEAD --no-llm --fail-on-drift

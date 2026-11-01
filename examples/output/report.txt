@@ -1,0 +1,30 @@
+DocSage: 1 Python / 1 Markdown files, 4 confirmed, 1 potential
+
+[CONFIRMED] README.md:5
+  doc : The `timeout` parameter defaults to 10 seconds.
+  code: lib.py:4  Default of parameter `timeout` in `fetch`() changed from 10 to 30
+  why : Documentation states 10, but the code now has 30.
+  fix : The `timeout` parameter defaults to 30 seconds.
+
+[CONFIRMED] README.md:6
+  doc : Use `retries` to control how many times a failed request is retried.
+  code: lib.py:4  Parameter `retries` of `fetch`() was renamed to `attempts`
+  why : Documentation references parameter `retries`, which no longer exists.
+  fix : Use `attempts` to control how many times a failed request is retried.
+
+[CONFIRMED] README.md:14
+  doc : Uploads are capped at `MAX_SIZE` of 100 bytes.
+  code: lib.py:1  Constant `MAX_SIZE` changed from 100 to 500
+  why : Documentation states 100, but the code now has 500.
+  fix : Uploads are capped at `MAX_SIZE` of 500 bytes.
+
+[CONFIRMED] README.md:18
+  doc : Call `legacy_login(user)` to sign in.
+  code: lib.py:12  `legacy_login`() was removed
+  why : Documentation references `legacy_login`, which no longer exists in the code.
+
+[POTENTIAL] README.md:22
+  doc : Set `timeout` to a higher value than the default 10 if requests are slow.
+  code: lib.py:4  Default of parameter `timeout` in `fetch`() changed from 10 to 30
+  why : Documentation states 10, but the code now has 30.
+  fix : Set `timeout` to a higher value than the default 30 if requests are slow.
